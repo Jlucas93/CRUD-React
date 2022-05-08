@@ -22,12 +22,12 @@ Este projeto consiste em criar um <strong>CRUD</strong>(Create, Read, Update, De
   <img alt="Axios" src="https://img.shields.io/badge/Using-Axios-blue">
 </a>
 
-- <a href="https://axios-http.com/ptbr/docs/intro">
-  <img alt="Axios" src="https://img.shields.io/badge/Using-NodeJS-blue">
+- <a href="https://nodejs.org/en/about/">
+  <img alt="NodeJs" src="https://img.shields.io/badge/Using-NodeJS-blue">
 </a>
 
-- <a href="https://axios-http.com/ptbr/docs/intro">
-  <img alt="Axios" src="https://img.shields.io/badge/Using-MySQL-blue">
+- <a href="https://dev.mysql.com/doc/">
+  <img alt="MySQL" src="https://img.shields.io/badge/Using-MySQL-blue">
 </a>
 
 
