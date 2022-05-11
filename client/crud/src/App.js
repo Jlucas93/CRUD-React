@@ -11,6 +11,14 @@ function App() {
     {
       nome: "teste11",
       id: 2
+    },
+    {
+      nome: "teste2",
+      id: 3
+    },
+    {
+      nome: "teste3",
+      id: 4
     }
   ]
 
