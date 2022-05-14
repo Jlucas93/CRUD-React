@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 
 function ModalProduto() {
 
-  const [nome, setNome] = useState({});
+  const [nome, setNome] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
-    const input = event.target
-    setNome(state => ({
-       ...state,
-       state[input.name] = input.value
+
+    setNome((e) => ({
+      ...e,
+      [event.target.name]: event.target.value,
     }))
   }
 
