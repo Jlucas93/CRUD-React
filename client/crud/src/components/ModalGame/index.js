@@ -1,21 +1,28 @@
 import './style.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 
-function ModalProduto() {
+function ModalGame() {
 
-  const [nome, setNome] = useState(null);
+  const [game, setGame] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
 
-    setNome((e) => ({
+    setGame((e) => ({
       ...e,
       [event.target.name]: event.target.value,
     }))
   }
 
   const handleClick = () => {
-    console.log(nome)
+    axios.post('http://localhost:8080/register', {
+      name: game.name,
+      price: "R$ " + game.price,
+      category: game.category,
+    }).then((response) => {
+      console.log(response)
+    })
   }
 
   return (
@@ -25,21 +32,21 @@ function ModalProduto() {
         <input
           onChange={handleChange}
           type="text"
-          name="nome"
+          name="name"
           placeholder="Nome do Porduto"
           className="input-register"
         />
         <input
           onChange={handleChange}
           type="text"
-          name="preco"
+          name="price"
           placeholder="Preço"
           className="input-register"
         />
         <input
           onChange={handleChange}
           type="text"
-          name="categoria"
+          name="category"
           placeholder="Categoria"
           className="input-register"
         />
@@ -52,4 +59,4 @@ function ModalProduto() {
   );
 }
 
-export default ModalProduto;
+export default ModalGame;
