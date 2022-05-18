@@ -9,15 +9,7 @@ function GameTable() {
   useEffect(() => {
     const url = `http://localhost:8080/getgames`
     axios.get(url)
-      .then(({ data }) => {
-        const newData = Object.assign({}, data)
-        setJogos({
-          name: newData.name,
-          price: newData.price
-        })
-        console.log(newData)
-      }
-      )
+      .then(({ data }) => setJogos(data))
   }, [])
 
   //render
@@ -34,7 +26,9 @@ function GameTable() {
         </thead>
         <tbody>
           <tr>
-            <td>teste</td>
+            {jogos.map((jogo, i) => (
+               <td key={i}>{jogo.name}</td>
+            ))}
           </tr>
         </tbody>
       </table>
