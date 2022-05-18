@@ -24,8 +24,7 @@ function ModalGame() {
       category: game.category,
     }).then((response) => {
       console.log(response)
-    }).catch(error => {
-      console.error(error)
+    }).finally(() => {
       button.disabled = false
     })
   }
