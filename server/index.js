@@ -22,10 +22,9 @@ app.get('/getgames', (req, res) => {
     database.query(SQL, (err, result) => {
         if (err) {
             console.log(err)
-        } else {
-
-            res.send(result)
+            return response.status(404).end()
         }
+        res.send(result)
     })
 })
 
