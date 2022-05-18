@@ -15,13 +15,18 @@ function ModalGame() {
     }))
   }
 
-  const handleClick = () => {
+  const handleClick = event => {
+    const button = event.target
+    button.disabled = true
     axios.post('http://localhost:8080/register', {
       name: game.name,
       price: "R$ " + game.price,
       category: game.category,
     }).then((response) => {
       console.log(response)
+    }).catch(error => {
+      console.error(error)
+      button.disabled = false
     })
   }
 
