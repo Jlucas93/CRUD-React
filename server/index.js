@@ -16,7 +16,7 @@ app.listen(8080, () => {
 app.use(cors())
 app.use(express.json())
 
-app.get('/getgames', (req, res) => {
+app.get('/games', (req, res) => {
     let SQL = 'SELECT * FROM games'
 
     database.query(SQL, (err, result) => {
@@ -28,7 +28,7 @@ app.get('/getgames', (req, res) => {
     })
 })
 
-app.post('/register', (req, res) => {
+app.post('/register/games', (req, res) => {
     const { name } = req.body;
     const { price } = req.body;
     const { category } = req.body;

@@ -13,11 +13,23 @@ code {
     monospace;
 }
 
-.openModal{
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn-OpenModal{
   cursor: pointer;
   width: 100px;
-  background-color: white;
-  color: black;
+  margin-top: 5px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 157, 0, 1);
   border-radius: .25rem;
-  margin-left: 90%;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.title{
+  color:rgba(255,140,0, .9);
+  font-weight: bold;
 }

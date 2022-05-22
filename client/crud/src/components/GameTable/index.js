@@ -7,7 +7,7 @@ const GameTable = () => {
   const [jogos, setJogos] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:8080/getgames`
+    const url = `http://localhost:8080/games`
     axios.get(url)
       .then(({ data }) => setJogos(data))
   }, [])
@@ -15,7 +15,6 @@ const GameTable = () => {
   //render
   return (
     <div className="container">
-      <h1 className="title">Games</h1>
       <table className="table-games">
         <thead>
           <tr>

@@ -4,19 +4,24 @@ import React, { useState } from 'react'
 
 const App = () => {
   //State
-  const [isOpen, setIsOpen] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
-  //functions
-  const openModal = () => {
-    console.log('abrindo modal')
-    setIsOpen('show')
-  }
-  console.log(isOpen)
   //render
   return (
     <>
-      <button onClick={openModal} className="openModal">Open Modal</button>
-      <ModalGame className={isOpen} />
+      <div className="header">
+        <h1 className="title">List of Games</h1>
+        <button
+          className="btn-OpenModal"
+          onClick={() => setIsOpen(true)}
+        >
+          Add Item
+        </button>
+      </div>
+      <ModalGame
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
       <GameTable />
     </>
   )
