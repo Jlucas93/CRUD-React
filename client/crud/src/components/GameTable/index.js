@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import './style.css';
 
-function GameTable() {
+const GameTable = () => {
   //state
-  const [jogos, setJogos] = useState(null);
+  const [jogos, setJogos] = useState([]);
 
   useEffect(() => {
     const url = `http://localhost:8080/getgames`
@@ -16,7 +16,7 @@ function GameTable() {
   return (
     <div className="container">
       <h1 className="title">Games</h1>
-      <table>
+      <table className="table-games">
         <thead>
           <tr>
             <th>Nome</th>
@@ -25,11 +25,14 @@ function GameTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {jogos.map((jogo, i) => (
-               <td key={i}>{jogo.name}</td>
-            ))}
-          </tr>
+          {jogos.map((value, i) =>
+            <tr key={i}>
+              <td>{value.name}</td>
+              <td>{value.price}</td>
+              <td>{value.category}</td>
+            </tr>
+          )
+          }
         </tbody>
       </table>
     </div>

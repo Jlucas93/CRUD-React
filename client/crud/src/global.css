@@ -5,9 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1e1e2d;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.openModal{
+  cursor: pointer;
+  width: 100px;
+  background-color: white;
+  color: black;
+  border-radius: .25rem;
+  margin-left: 90%;
 }

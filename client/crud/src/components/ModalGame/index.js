@@ -2,7 +2,8 @@ import './style.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ModalGame() {
+const ModalGame = (prop) => {
+  const { className, modalRef } = prop;
 
   const [game, setGame] = useState(null);
 
@@ -29,10 +30,11 @@ function ModalGame() {
     })
   }
 
+
   return (
-    <div className="container">
+    <div className={`${className} modal`} ref={modalRef}>
       <div className="data-register">
-        <h1 className="title">Dados do produto</h1>
+        <h1 className="title">Informações do jogo</h1>
         <input
           onChange={handleChange}
           type="text"
