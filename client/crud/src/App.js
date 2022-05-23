@@ -1,31 +1,28 @@
-import ModalProduto from './components/ModalProduto'
-import ProductTable from './components/ProductTable'
+import ModalGame from './components/ModalGame'
+import GameTable from './components/GameTable'
+import React, { useState } from 'react'
 
-function App() {
+const App = () => {
+  //State
+  const [isOpen, setIsOpen] = useState(false);
 
-  const produto = [
-    {
-      nome: 'teste',
-      id: 1
-    },
-    {
-      nome: "teste11",
-      id: 2
-    },
-    {
-      nome: "teste2",
-      id: 3
-    },
-    {
-      nome: "teste3",
-      id: 4
-    }
-  ]
-
+  //render
   return (
     <>
-      <ModalProduto />
-      <ProductTable produto={produto} />
+      <div className="header">
+        <h1 className="title">List of Games</h1>
+        <button
+          className="btn-OpenModal"
+          onClick={() => setIsOpen(true)}
+        >
+          Add Item
+        </button>
+      </div>
+      <ModalGame
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
+      <GameTable />
     </>
   )
 }
