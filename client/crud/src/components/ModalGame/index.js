@@ -1,7 +1,6 @@
 import './style.css';
 import React, { useState } from 'react';
 import axios from 'axios';
-import x from '../../Assets/x.gif'
 
 const ModalGame = props => {
   if (!props.isOpen) {
