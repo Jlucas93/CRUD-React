@@ -3,10 +3,18 @@
   padding: 0;
   color: white;
 }
+.wrapper {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
 .fade{
   width: 100%;
   height: 100%;
-  position:absolute;
+  top: 0;
+  position: fixed;
 }
 .modal{
   display: flex;
@@ -22,13 +30,12 @@
   border-radius: .25rem;
 }
 .btn-close{
-  position: absolute;
+  margin-left: auto;
   cursor: pointer;
   left: 25rem;
   right: 0rem;
   bottom: 30rem;
   padding: 0;
-  margin: 0;
   width: 1.5rem;
 }
 .modal-content{

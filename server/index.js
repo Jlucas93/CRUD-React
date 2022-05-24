@@ -10,7 +10,7 @@ const database = mysql.createPool({
     database: "crud"
 })
 
-app.listen(8080, () => {
+app.listen(3001, () => {
     console.log('Iniciado')
 })
 app.use(cors())
