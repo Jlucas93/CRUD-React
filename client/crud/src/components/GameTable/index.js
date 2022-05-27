@@ -6,12 +6,14 @@ const GameTable = () => {
   //state
   const [jogos, setJogos] = useState([]);
 
-  const handleUpdate = () => {
-    console.log()
+  const handleUpdate = (e) => {
+    console.log(e)
   }
-  const handleDelete = () => {
-    console.log()
+  const handleDelete = (event) => {
+    axios.delete(`http://localhost:3001/games/${event.idgames}`)
+    window.location.reload()
   }
+
   useEffect(() => {
     const url = `http://localhost:3001/games`
     axios.get(url)
@@ -40,12 +42,13 @@ const GameTable = () => {
               <td className="btns">
                 <button
                   className="btn-update"
-                  onClick={() => console.log(value.idgames)}
+                  onClick={() => { handleUpdate(value) }}
                 >
                   Edit
                 </button>
                 <button
                   className="btn-delete"
+                  onClick={() => { handleDelete(value) }}
                 >
                   Delete
                 </button>

@@ -16,18 +16,15 @@ const ModalGame = props => {
       [event.target.name]: event.target.value,
     }))
   }
-  const handleClick = event => {
-    const button = event.target
-    button.disabled = true
-    axios.post('http://localhost:8080/games', {
+  const handleClick = () => {
+    axios.post('http://localhost:3001/games', {
       name: game.name,
       price: "R$ " + game.price,
       category: game.category,
     }).then((response) => {
       console.log(response)
-    }).finally(() => {
-      button.disabled = false
     })
+    props.onClose();
   }
   //render
   return (
