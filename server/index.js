@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql2')
-const cors = require('cors')
+const cors = require('cors');
+const { application } = require('express');
 
 const database = mysql.createPool({
     host: "localhost",
@@ -27,8 +28,18 @@ app.get('/games', (req, res) => {
         res.send(result)
     })
 })
+app.put('/games/:id', (req, res) => {
+    const {
+        id,
+        name,
+        price,
+        category
+    } = req.body
+    res.send(id, name, price, category)
 
-app.post('/register/games', (req, res) => {
+})
+
+app.post('/games', (req, res) => {
     const { name } = req.body;
     const { price } = req.body;
     const { category } = req.body;

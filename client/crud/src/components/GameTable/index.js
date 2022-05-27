@@ -6,11 +6,18 @@ const GameTable = () => {
   //state
   const [jogos, setJogos] = useState([]);
 
+  const handleUpdate = () => {
+    console.log()
+  }
+  const handleDelete = () => {
+    console.log()
+  }
   useEffect(() => {
-    const url = `http://localhost:8080/games`
+    const url = `http://localhost:3001/games`
     axios.get(url)
       .then(({ data }) => setJogos(data))
   }, [])
+
 
   //render
   return (
@@ -20,7 +27,8 @@ const GameTable = () => {
           <tr>
             <th>Nome</th>
             <th>Valor</th>
-            <th>categoria</th>
+            <th>Categoria</th>
+            <th>Opções</th>
           </tr>
         </thead>
         <tbody>
@@ -29,12 +37,25 @@ const GameTable = () => {
               <td>{value.name}</td>
               <td>{value.price}</td>
               <td>{value.category}</td>
+              <td className="btns">
+                <button
+                  className="btn-update"
+                  onClick={() => console.log(value.idgames)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn-delete"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           )
           }
         </tbody>
       </table>
-    </div>
+    </div >
   );
 }
 

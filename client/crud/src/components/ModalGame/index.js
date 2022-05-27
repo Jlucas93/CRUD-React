@@ -19,7 +19,7 @@ const ModalGame = props => {
   const handleClick = event => {
     const button = event.target
     button.disabled = true
-    axios.post('http://localhost:8080/register/games', {
+    axios.post('http://localhost:8080/games', {
       name: game.name,
       price: "R$ " + game.price,
       category: game.category,

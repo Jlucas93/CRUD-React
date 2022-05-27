@@ -12,13 +12,47 @@ th {
   padding: 1rem 2rem;
   text-align: left;
   line-height: 1.5rem;
-  color: rgb(255, 140, 0)
+  background-color: rgb(255, 140, 0);
+  color: #1e1e2d;
 
 }
 td {
   padding: 1rem 2rem;
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-bottom: 0px solid rgb(255, 255, 255);
   color: white;
-  background-color: rgb(255, 140, 0)
+  background-color: #1e1e2d;
+}
+.btns{
+  width: 15rem;
+  padding: 1rem 2rem;
+  border-bottom: 0px solid rgb(255, 255, 255);
+  color: white;
+  background-color: #1e1e2d;
+}
+.btn-update{
+  cursor: pointer;
+  width: 100px;
+  margin-left: 5px;
+  padding: 10px;
+  border-radius: .25rem;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(105, 144, 243);
+  color: rgb(255, 255, 255);
 }
 
+.btn-update:hover{
+  transform: scale(1.1);
+}
+.btn-delete:hover{
+  transform: scale(1.1);
+}
+.btn-delete{
+  cursor: pointer;
+  width: 100px;
+  margin-left: 5px;
+  padding: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: .25rem;
+  color: rgb(255, 255, 255);
+  background-color: rgb(244, 33, 33);
+}
