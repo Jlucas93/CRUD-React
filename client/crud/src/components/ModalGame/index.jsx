@@ -55,7 +55,7 @@ const ModalGame = props => {
             onChange={handleChange}
             type="text"
             name="name"
-            placeholder="Nome do Porduto"
+            placeholder="Nome do Jogo"
             className="input-register"
           />
           <input
@@ -72,7 +72,8 @@ const ModalGame = props => {
             placeholder="Categoria"
             className="input-register"
           />
-          <button className="register-button"
+          <button
+            className="register-button"
             onClick={handleClick}
           >
             Cadastrar

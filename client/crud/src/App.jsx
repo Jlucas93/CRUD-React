@@ -1,5 +1,6 @@
 import ModalGame from './components/ModalGame'
 import GameTable from './components/GameTable'
+import ModalUpdate from './components/ModalUpdate'
 import React, { useState } from 'react'
 
 const App = () => {

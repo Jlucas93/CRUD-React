@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios';
 import './style.css';
 
@@ -9,17 +9,15 @@ const GameTable = () => {
   const handleUpdate = (e) => {
     console.log(e)
   }
-  const handleDelete = (event) => {
-    axios.delete(`http://localhost:3001/games/${event.idgames}`)
-    window.location.reload()
-  }
+  const handleDelete = useCallback((game) => {
+    axios.delete(`http://localhost:3001/games/${game.idgames}`)
+  }, [])
 
   useEffect(() => {
     const url = `http://localhost:3001/games`
     axios.get(url)
       .then(({ data }) => setJogos(data))
-  }, [])
-
+  }, [jogos])
 
   //render
   return (
