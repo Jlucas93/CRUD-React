@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
     res.send("Servidor Rodando")
 })
 app.listen(port, () => {
-    console.log('Iniciado na porta' + port)
+    console.log('Iniciado na porta ' + port)
 })
 app.use(cors())
 app.use(express.json())
