@@ -1,22 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import React from 'react'
 import './style.css'
-
-const GameTable = () => {
-  // State
-  const [jogos, setJogos] = useState([])
-  const handleUpdate = (e) => {
-    console.log(e)
-  }
-  const handleDelete = useCallback((game) => {
-    axios.delete(`http://localhost:3001/games/${game.id}`)
-  }, [])
-  useEffect(() => {
-    const url = `http://localhost:3001/games`
-    axios.get(url)
-      .then(({ data }) => setJogos(data))
-  }, [jogos])
-  //render
+// Component
+const GameTable = ({ jogos, onUpdate, onDelete }) => {
+  // Render
   return (
     <div className="container">
       <table className="table-games">
@@ -37,20 +23,19 @@ const GameTable = () => {
               <td className="btns">
                 <button
                   className="btn-update"
-                  onClick={() => { handleUpdate(value) }}
+                  onClick={() => onUpdate(value)}
                 >
                   Edit
                 </button>
                 <button
                   className="btn-delete"
-                  onClick={() => { handleDelete(value) }}
+                  onClick={() => onDelete(value)}
                 >
                   Delete
                 </button>
               </td>
             </tr>
-          )
-          }
+          )}
         </tbody>
       </table>
     </div >

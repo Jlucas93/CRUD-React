@@ -19,27 +19,36 @@ app.listen(port, () => {
   console.log('Iniciado na porta', port)
 })
 // Games
-app.get('/games', async (_req, res) => {
-  const result = await knex('games')
-  res.send(result)
+app.get('/games', (_req, res) => {
+  knex('games')
+    .then(result => res.send(result))
+    .catch(error => {
+      console.error(error)
+      res.status(500).end()
+    })
 })
-app.post('/games', async (req, res) => {
+app.post('/games', (req, res) => {
   const {
     name,
     price,
     category
   } = req.body
-  const game_id = await knex('games')
+  knex('games')
     .insert({
       name,
       price,
       category
     })
-  res.status(201).send({ id: game_id })
+    .then(([game_id]) => {
+      res.status(201).send({ id: game_id })
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(500).end()
+    })
 })
 app.put('/games/:id', async (req, res) => {
   const {
-    id,
     name,
     price,
     category
@@ -50,13 +59,13 @@ app.put('/games/:id', async (req, res) => {
       price,
       category
     })
-    .where('id', id)
+    .where('id', req.params.id)
   res.status(updated_records ? 204 : 404).end()
 })
 app.delete('/games/:id', async (req, res) => {
   const { id } = req.params
-  await knex('games')
+  const updated_records = await knex('games')
     .where('id', id)
     .del()
-  res.status(204).end()
+  res.status(updated_records ? 204 : 404).end()
 })

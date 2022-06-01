@@ -11,9 +11,9 @@ const knex = Knex({
 async function start() {
   await knex.schema.createTable('games', function (table) {
     table.increments()
-    table.string('name')
-    table.string('category')
-    table.decimal('price')
+    table.string('name').notNullable()
+    table.string('category').notNullable()
+    table.decimal('price').notNullable()
   })
 }
 start()

@@ -1,32 +1,44 @@
 import './style.css';
-import React, { useState } from 'react';
-import axios from 'axios';
-
-const ModalGame = props => {
-  if (!props.isOpen) {
-    return null
-  }
+import React, { useState } from 'react'
+import useApi from '../../hooks/useApi'
+// Component
+const ModalGame = ({ game, onAdd, onClose, onUpdate }) => {
+  
+  const [api] = useApi()
   //State
-  const [game, setGame] = useState(null);
+  const [inputs, setInputs] = useState({})
   //Methods
   const handleChange = (event) => {
-    event.preventDefault();
-    setGame((e) => ({
-      ...e,
+    event.preventDefault()
+    setInputs(state => ({
+      ...state,
       [event.target.name]: event.target.value,
     }))
   }
   const handleClick = () => {
-    axios.post('http://localhost:3001/games', {
-      name: game.name,
-      price: "R$ " + game.price,
-      category: game.category,
-    }).then((response) => {
-      console.log(response)
-    })
-    props.onClose();
+    const body = {
+      name: inputs.name,
+      price: parseFloat(inputs.price),
+      category: inputs.category,
+    }
+    console.log(game)
+    game
+      ? api.put(`/games/${game.id}`, body)
+        .then(() => {
+          onUpdate(game, body)
+        })
+      : api.post('/games', body)
+        .then(({ data }) => {
+          onAdd({
+            id: data.id,
+            ...body,
+          })
+        })
+    onClose()
   }
-  //render
+  // Render
+  if (game === null)
+    return null
   return (
     <div className="wrapper">
       <div className="modal"
@@ -34,7 +46,7 @@ const ModalGame = props => {
       >
         <button
           className="btn-close"
-          onClick={props.onClose}
+          onClick={onClose}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -57,13 +69,15 @@ const ModalGame = props => {
             name="name"
             placeholder="Nome do Jogo"
             className="input-register"
+            defaultValue={game?.name}
           />
           <input
             onChange={handleChange}
-            type="text"
+            type="number"
             name="price"
             placeholder="Preço"
             className="input-register"
+            defaultValue={game?.price}
           />
           <input
             onChange={handleChange}
@@ -71,6 +85,7 @@ const ModalGame = props => {
             name="category"
             placeholder="Categoria"
             className="input-register"
+            defaultValue={game?.category}
           />
           <button
             className="register-button"
@@ -82,7 +97,7 @@ const ModalGame = props => {
       </div>
       <div
         className="fade"
-        onClick={props.onClose}
+        onClick={onClose}
       />
     </div>
   );
