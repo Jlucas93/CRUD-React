@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import axios from 'axios';
-import './style.css';
+import axios from 'axios'
+import './style.css'
 
 const GameTable = () => {
-  //state
-  const [jogos, setJogos] = useState([]);
-
+  // State
+  const [jogos, setJogos] = useState([])
   const handleUpdate = (e) => {
     console.log(e)
   }
   const handleDelete = useCallback((game) => {
-    axios.delete(`http://localhost:3001/games/${game.idgames}`)
+    axios.delete(`http://localhost:3001/games/${game.id}`)
   }, [])
-
   useEffect(() => {
     const url = `http://localhost:3001/games`
     axios.get(url)
       .then(({ data }) => setJogos(data))
   }, [jogos])
-
   //render
   return (
     <div className="container">
@@ -60,4 +57,4 @@ const GameTable = () => {
   );
 }
 
-export default GameTable;
+export default GameTable

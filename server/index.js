@@ -1,75 +1,62 @@
-const express = require('express');
-const app = express();
-const mysql = require('mysql2')
-const cors = require('cors');
-
+const express = require('express')
+const cors = require('cors')
+const Knex = require('knex')
+//
+const knex = Knex({
+  client: 'mysql2',
+  connection: {
+    host: 'localhost',
+    user: 'root',
+    password: 'Lucas123963',
+    database: 'crud'
+  }
+})
 const port = 3001
-const database = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "Lucas123963",
-    database: "crud"
-})
-app.get('/', function (req, res) {
-    res.send("Servidor Rodando")
-})
+const app = express()
+  .use(cors())
+  .use(express.json())
 app.listen(port, () => {
-    console.log('Iniciado na porta ' + port)
+  console.log('Iniciado na porta', port)
 })
-app.use(cors())
-app.use(express.json())
-
-app.get('/games', (req, res) => {
-    let SQL = 'SELECT * FROM games'
-
-    database.query(SQL, (err, result) => {
-        if (err) {
-            console.log(err)
-            return res.status(404).end()
-        }
-        res.send(result)
-    })
+// Games
+app.get('/games', async (_req, res) => {
+  const result = await knex('games')
+  res.send(result)
 })
-app.post('/games', (req, res) => {
-    const { name } = req.body;
-    const { price } = req.body;
-    const { category } = req.body;
-
-    let SQL = "INSERT INTO games( name, price, category ) VALUES(?,?,?)"
-
-    database.query(SQL, [name, price, category], (err, result) => {
-        console.log(err)
+app.post('/games', async (req, res) => {
+  const {
+    name,
+    price,
+    category
+  } = req.body
+  const game_id = await knex('games')
+    .insert({
+      name,
+      price,
+      category
     })
+  res.status(201).send({ id: game_id })
 })
-
-app.put('/games/:id', (req, res) => {
-    const {
-        id,
-        name,
-        price,
-        category
-    } = req.body
-    let SQL = "UPDATE games SET name = ?,price = ?, category = ? WHERE idgames = ?";
-
-    database.query(SQL, (err, result) => {
-        if (err) {
-            console.log(err)
-            return res.status(500).end()
-        }
-        res.send(result)
+app.put('/games/:id', async (req, res) => {
+  const {
+    id,
+    name,
+    price,
+    category
+  } = req.body
+  const updated_records = await knex('games')
+    .update({
+      name,
+      price,
+      category
     })
-
+    .where('id', id)
+  res.status(updated_records ? 204 : 404).end()
 })
-
-app.delete('/games/:id', (req, res) => {
-    const { id } = req.params
-
-    let SQL = "DELETE FROM games WHERE idgames = ?"
-    database.query(SQL, [id], (err, result) => {
-        if (err) {
-            console.log(err)
-        }
-        res.send(result)
-    })
-
+app.delete('/games/:id', async (req, res) => {
+  const { id } = req.params
+  await knex('games')
+    .where('id', id)
+    .del()
+  res.status(204).end()
 })
