@@ -15,6 +15,7 @@ const port = 3001
 const app = express()
   .use(cors())
   .use(express.json())
+
 app.listen(port, () => {
   console.log('Iniciado na porta', port)
 })
@@ -27,6 +28,7 @@ app.get('/games', (_req, res) => {
       res.status(500).end()
     })
 })
+
 app.post('/games', (req, res) => {
   const {
     name,
@@ -47,6 +49,7 @@ app.post('/games', (req, res) => {
       res.status(500).end()
     })
 })
+
 app.put('/games/:id', async (req, res) => {
   const {
     name,
@@ -62,6 +65,7 @@ app.put('/games/:id', async (req, res) => {
     .where('id', req.params.id)
   res.status(updated_records ? 204 : 404).end()
 })
+
 app.delete('/games/:id', async (req, res) => {
   const { id } = req.params
   const updated_records = await knex('games')
