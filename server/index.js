@@ -62,14 +62,14 @@ app.put('/games/:id', async (req, res) => {
       price,
       category
     })
-    .where('id', req.params.id)
+    .where('idgames', req.params.id)
   res.status(updated_records ? 204 : 404).end()
 })
 
 app.delete('/games/:id', async (req, res) => {
   const { id } = req.params
   const updated_records = await knex('games')
-    .where('id', id)
+    .where('idgames', id)
     .del()
   res.status(updated_records ? 204 : 404).end()
 })

@@ -23,7 +23,7 @@ const ModalGame = ({ game, onAdd, onClose, onUpdate }) => {
     }
     console.log(game)
     game
-      ? api.put(`/games/${game.id}`, body)
+      ? api.put(`/games/${game.idgames}`, body)
         .then(() => {
           onUpdate(game, body)
         })

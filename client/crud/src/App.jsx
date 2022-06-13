@@ -25,7 +25,7 @@ const App = () => {
     ))
   }, [])
   const onDelete = useCallback((game) => {
-    api.delete(`/games/${game.id}`)
+    api.delete(`/games/${game.idgames}`)
       .finally(() => {
         setJogos(state => state.filter(jogo => jogo !== game))
       })
